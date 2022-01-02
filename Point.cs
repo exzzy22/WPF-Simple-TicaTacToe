@@ -13,8 +13,8 @@ namespace TicaTacToe
 
         public Point(int row, int col)
         {
-            row = _row;
-            col = _col;
+            _row = row;
+            _col = col;
         }
     }
 }

@@ -31,9 +31,8 @@ namespace TicaTacToe
             var btn = sender as Button;
             var btnName = btn.Name;
             btn.Content = boardLogic.CurrnetPlayer.Symbol;
-            int sum = boardLogic.WinningSum();
-            if(boardLogic.DoWeHaveWinner(sum)) MessageBox.Show(boardLogic.Winner(sum).Symbol);
-            else boardLogic.ChangePlayer();
+            boardLogic.BoardSet(StringParser.ParseAString(btnName));
+            boardLogic.ChangePlayer();
 
         }
     }

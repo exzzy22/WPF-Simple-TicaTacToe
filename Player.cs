@@ -19,7 +19,7 @@ namespace TicaTacToe
         public Player(string symbol,byte[] color, int arrayValue)
         {
             Symbol = symbol;
-            WiningMessage = @"{symbol} has won!";
+            WiningMessage = $"{symbol} has won!";
             PlayerColor = color;
             ArrayValue = arrayValue;
             WinCounter = 0;
@@ -33,6 +33,10 @@ namespace TicaTacToe
         public void WinIncrement()
         { 
             WinCounter++;
+        }
+        public void WinReset()
+        {
+            WinCounter=0;
         }
     }
 }

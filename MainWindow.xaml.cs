@@ -28,32 +28,39 @@ namespace TicaTacToe
 
         private void PlayerClicks(object sender, RoutedEventArgs e)
         {
-            var btn = sender as Button;
-            var btnName = btn.Name;
-            var playerColor = BoardLogic.CurrnetPlayer.PlayerColor;
-            btn.Foreground = new SolidColorBrush(Color.FromRgb(playerColor[0],playerColor[1],playerColor[2]));
-            btn.Content = BoardLogic.CurrnetPlayer.Symbol;
-            BoardLogic.BoardSet(StringParser.ParseAString(btnName));
-            if (BoardLogic.CheckWin().IsDraw)
+            if (sender as Button != RestartButton && sender as Button != ExitButton)
             {
-                MessageBox.Show("Draw");
-                ResetButtonContent();
-                BoardLogic.ClearBoard();
-            }
-              
-            else if (BoardLogic.CheckWin().HasWon)
-            {
-                BoardLogic.CurrnetPlayer.WinIncrement();
-                MessageBox.Show(BoardLogic.CurrnetPlayer.Symbol);
-                ResetButtonContent();
-                BoardLogic.ClearBoard();
-                if (BoardLogic.PlayerOne.WinCounter > 0 || BoardLogic.PlayerTwo.WinCounter > 0)
+                var btn = sender as Button;
+                var btnName = btn.Name;
+                var playerColor = BoardLogic.CurrnetPlayer.PlayerColor;
+                btn.Foreground = new SolidColorBrush(Color.FromRgb(playerColor[0], playerColor[1], playerColor[2]));
+                btn.Content = BoardLogic.CurrnetPlayer.Symbol;
+                BoardLogic.BoardSet(StringParser.ParseAString(btnName));
+                if (BoardLogic.CheckWin().IsDraw)
                 {
-                    PlayerOneWins.Text = BoardLogic.PlayerOne.WinCounter.ToString();
-                    PlayerTwoWins.Text = BoardLogic.PlayerTwo.WinCounter.ToString();
+                    WinnerTextWindow winnerWindow = new WinnerTextWindow("Draw");
+                    winnerWindow.Owner = this;
+                    winnerWindow.ShowDialog();
+                    ResetButtonContent();
+                    BoardLogic.ClearBoard();
                 }
-            } 
-            else BoardLogic.ChangePlayer();
+
+                else if (BoardLogic.CheckWin().HasWon)
+                {
+                    BoardLogic.CurrnetPlayer.WinIncrement();
+                    WinnerTextWindow winnerWindow = new WinnerTextWindow(BoardLogic.CurrnetPlayer.WiningMessage);
+                    winnerWindow.Owner = this;
+                    winnerWindow.ShowDialog();
+                    ResetButtonContent();
+                    BoardLogic.ClearBoard();
+                    if (BoardLogic.PlayerOne.WinCounter > 0 || BoardLogic.PlayerTwo.WinCounter > 0)
+                    {
+                        PlayerOneWins.Text = BoardLogic.PlayerOne.WinCounter.ToString();
+                        PlayerTwoWins.Text = BoardLogic.PlayerTwo.WinCounter.ToString();
+                    }
+                }
+                else BoardLogic.ChangePlayer();
+            }
         }
         public void ResetButtonContent()
         {
@@ -66,6 +73,28 @@ namespace TicaTacToe
             Button20.Content = "";
             Button21.Content = "";
             Button22.Content = "";
+        }
+
+        private void RestartButton_Click(object sender, RoutedEventArgs e)
+        {
+            ResetButtonContent();
+            BoardLogic.ResetCounter();
+            PlayerOneWins.Text = "";
+            PlayerTwoWins.Text = "";
+            BoardLogic.ClearBoard();
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
         }
     }
 }

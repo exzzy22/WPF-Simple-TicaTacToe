@@ -35,6 +35,11 @@ namespace TicaTacToe
             CurrnetPlayer = PlayerOne;
             _board = new int[,] { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } };
         }
+        public void ResetCounter()
+        {
+            PlayerOne.WinReset();
+            PlayerTwo.WinReset();
+        }
         public WindCondtionObject CheckWin()
         {
             int sum =0;

@@ -5,12 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TicaTacToe"
         mc:Ignorable="d"
-        Title="MainWindow" Height="655" Width="1025" Background="#FF131212" Foreground="White" FontFamily="Ink Free" FontSize="72">
+        Title="MainWindow" Height="700" Width="1025" Background="#FF131212" Foreground="White" 
+        FontFamily="Ink Free" FontSize="72" ResizeMode="NoResize" WindowStyle="None" 
+        MouseDown="Window_MouseDown" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="{x:Type Button}">
-        <EventSetter Event="Click" Handler="PlayerClicks"/>
+            <EventSetter Event="Click" Handler="PlayerClicks"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Transparent"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
     </Window.Resources>
+    <Border BorderBrush="White" BorderThickness="3" CornerRadius="2">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2.5"/>
@@ -57,6 +75,16 @@
         <TextBlock Text="wins" Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" Margin="130,70,0,0"/>
         <TextBlock Name="PlayerOneWins" Text="" Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="2" Margin="130,10,0,0"/>
         <TextBlock Name="PlayerTwoWins" Text="" Grid.Row="3" Grid.Column="7" Grid.ColumnSpan="2" Margin="50,10,0,0"/>
+        <Button x:Name="RestartButton" Content="Restart"  Grid.Row="5" Grid.Column="2" 
+                Grid.ColumnSpan="4" BorderThickness="0" Background="Transparent" Foreground="White" 
+                Margin="150,100,80,20" Click="RestartButton_Click"/>
+        <Button x:Name="ExitButton" Content="Exit"  Grid.Row="5" Grid.Column="5" 
+                Grid.ColumnSpan="3" BorderThickness="0" Background="Transparent" 
+                Foreground="White" Margin="290,100,80,20" Click="ExitButton_Click"/>
+        
+
+
 
     </Grid>
+    </Border>
 </Window>

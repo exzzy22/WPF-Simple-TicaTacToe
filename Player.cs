@@ -10,12 +10,13 @@ namespace TicaTacToe
     {
         public string Symbol { get; private set; }
         public string WiningMessage { get; private set; }
-
+        public int ArrayValue { get; private set; }
         public int WinCounter { get; private set; }
 
-        public Player(string symbol)
+        public Player(string symbol,int arrayValue)
         {
             Symbol = symbol;
+            ArrayValue = arrayValue;
             WiningMessage = @"{symbol} has won!";
             WinCounter = 0;
         }

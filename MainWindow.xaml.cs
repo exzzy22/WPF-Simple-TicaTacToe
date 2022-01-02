@@ -31,16 +31,10 @@ namespace TicaTacToe
             var btn = sender as Button;
             var btnName = btn.Name;
             btn.Content = boardLogic.CurrnetPlayer.Symbol;
-            boardLogic.ChangePlayer();
-        }
+            int sum = boardLogic.WinningSum();
+            if(boardLogic.DoWeHaveWinner(sum)) MessageBox.Show(boardLogic.Winner(sum).Symbol);
+            else boardLogic.ChangePlayer();
 
-        private Point Parser(string btnText)
-        {
-            var text = btnText.Substring(6, 2);
-            var x = Convert.ToInt32(text.Substring(0, 1));
-            var y = Convert.ToInt32(text.Substring(1, 1));
-
-            return new Point(x, y);
         }
     }
 }

@@ -8,8 +8,8 @@ namespace TicaTacToe
 {
     internal class Point
     {
-        private int _row { get; set; }
-        private int _col { get; set; }
+        public int _row { get; private set; }
+        public int _col { get; private set; }
 
         public Point(int row, int col)
         {

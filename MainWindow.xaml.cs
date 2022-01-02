@@ -20,7 +20,7 @@ namespace TicaTacToe
     /// </summary>
     public partial class MainWindow : Window
     {
-        BoardLogic boardLogic = new BoardLogic();
+        BoardLogic BoardLogic = new BoardLogic();
         public MainWindow()
         {
             InitializeComponent();
@@ -30,10 +30,42 @@ namespace TicaTacToe
         {
             var btn = sender as Button;
             var btnName = btn.Name;
-            btn.Content = boardLogic.CurrnetPlayer.Symbol;
-            boardLogic.BoardSet(StringParser.ParseAString(btnName));
-            boardLogic.ChangePlayer();
-
+            var playerColor = BoardLogic.CurrnetPlayer.PlayerColor;
+            btn.Foreground = new SolidColorBrush(Color.FromRgb(playerColor[0],playerColor[1],playerColor[2]));
+            btn.Content = BoardLogic.CurrnetPlayer.Symbol;
+            BoardLogic.BoardSet(StringParser.ParseAString(btnName));
+            if (BoardLogic.CheckWin().IsDraw)
+            {
+                MessageBox.Show("Draw");
+                ResetButtonContent();
+                BoardLogic.ClearBoard();
+            }
+              
+            else if (BoardLogic.CheckWin().HasWon)
+            {
+                BoardLogic.CurrnetPlayer.WinIncrement();
+                MessageBox.Show(BoardLogic.CurrnetPlayer.Symbol);
+                ResetButtonContent();
+                BoardLogic.ClearBoard();
+                if (BoardLogic.PlayerOne.WinCounter > 0 || BoardLogic.PlayerTwo.WinCounter > 0)
+                {
+                    PlayerOneWins.Text = BoardLogic.PlayerOne.WinCounter.ToString();
+                    PlayerTwoWins.Text = BoardLogic.PlayerTwo.WinCounter.ToString();
+                }
+            } 
+            else BoardLogic.ChangePlayer();
+        }
+        public void ResetButtonContent()
+        {
+            Button00.Content = "";
+            Button01.Content = "";
+            Button02.Content = "";
+            Button10.Content = "";
+            Button11.Content = "";
+            Button12.Content = "";
+            Button20.Content = "";
+            Button21.Content = "";
+            Button22.Content = "";
         }
     }
 }

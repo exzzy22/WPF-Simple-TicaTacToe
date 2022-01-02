@@ -42,19 +42,21 @@
             <Line X1="200" Y1="40" X2="200" Y2="300" Stroke="White" StrokeThickness="4" />
             <Line X1="50" Y1="100" X2="350" Y2="100" Stroke="White" StrokeThickness="4" />
         </Canvas>
-        <Button Name="Button00"  Grid.Row="2" Grid.Column="2" BorderThickness="0" Background="Transparent" Foreground="White"/>
-        <Button Name="Button01"  Grid.Row="2" Grid.Column="3" BorderThickness="0" Background="Transparent" Foreground="White"/>
-        <Button Name="Button02"  Grid.Row="2" Grid.Column="4" BorderThickness="0" Background="Transparent" Foreground="White"/>
-        <Button Name="Button10"  Grid.Row="3" Grid.Column="2" BorderThickness="0" Background="Transparent" Foreground="White"/>
-        <Button Name="Button11"  Grid.Row="3" Grid.Column="3" BorderThickness="0" Background="Transparent" Foreground="White"/>
-        <Button Name="Button12"  Grid.Row="3" Grid.Column="4" BorderThickness="0" Background="Transparent" Foreground="White"/>
-        <Button Name="Button20"  Grid.Row="4" Grid.Column="2" BorderThickness="0" Background="Transparent" Foreground="White"/>
-        <Button Name="Button21"  Grid.Row="4" Grid.Column="3" BorderThickness="0" Background="Transparent" Foreground="White"/>
-        <Button Name="Button22"  Grid.Row="4" Grid.Column="4" BorderThickness="0" Background="Transparent" Foreground="White"/>
+        <Button x:Name="Button00"  Grid.Row="2" Grid.Column="2" BorderThickness="0" Background="Transparent" Foreground="White"/>
+        <Button x:Name="Button01"  Grid.Row="2" Grid.Column="3" BorderThickness="0" Background="Transparent" Foreground="White"/>
+        <Button x:Name="Button02"  Grid.Row="2" Grid.Column="4" BorderThickness="0" Background="Transparent" Foreground="White"/>
+        <Button x:Name="Button10"  Grid.Row="3" Grid.Column="2" BorderThickness="0" Background="Transparent" Foreground="White"/>
+        <Button x:Name="Button11"  Grid.Row="3" Grid.Column="3" BorderThickness="0" Background="Transparent" Foreground="White"/>
+        <Button x:Name="Button12"  Grid.Row="3" Grid.Column="4" BorderThickness="0" Background="Transparent" Foreground="White"/>
+        <Button x:Name="Button20"  Grid.Row="4" Grid.Column="2" BorderThickness="0" Background="Transparent" Foreground="White"/>
+        <Button x:Name="Button21"  Grid.Row="4" Grid.Column="3" BorderThickness="0" Background="Transparent" Foreground="White"/>
+        <Button x:Name="Button22"  Grid.Row="4" Grid.Column="4" BorderThickness="0" Background="Transparent" Foreground="White"/>
         <TextBlock Text="Tica Tac Toe" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="4" Margin="10,30,0,0"/>
-        <TextBlock Text="X" Grid.Row="2" Grid.Column="6" Margin="130,10,0,0"/>
-        <TextBlock Text="O" Grid.Row="2" Grid.Column="7" Margin="50,10,0,0"/>
+        <TextBlock Text="X" Grid.Row="2" Grid.Column="6" Margin="130,10,0,0" Foreground="#CC00CC"/>
+        <TextBlock Text="O" Grid.Row="2" Grid.Column="7" Margin="50,10,0,0" Foreground="#FFFF00"/>
         <TextBlock Text="wins" Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" Margin="130,70,0,0"/>
+        <TextBlock Name="PlayerOneWins" Text="" Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="2" Margin="130,10,0,0"/>
+        <TextBlock Name="PlayerTwoWins" Text="" Grid.Row="3" Grid.Column="7" Grid.ColumnSpan="2" Margin="50,10,0,0"/>
 
     </Grid>
 </Window>

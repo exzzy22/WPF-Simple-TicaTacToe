@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TicaTacToe"
         mc:Ignorable="d"
-        Title="WinnerTextWindow" Height="200" Width="500" FontFamily="Ink Free" FontSize="72"
+        Title="WinnerTextWindow" Height="250" Width="500" FontFamily="Ink Free" FontSize="72"
         Background="Transparent" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" 
         WindowStyle="None" BorderBrush="Transparent" AllowsTransparency="True">
     <Window.Resources>
-        <ImageBrush x:Key="winnerButtonMouseOver" ImageSource="Images\brush.png" Stretch="None" TileMode="None"/>
+        <!--Imagebrush for mouseover and clicked-->
+        <ImageBrush x:Key="winnerButtonMouseOver" ImageSource="Images\brush.png" Stretch="None" TileMode="None"/> 
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -47,11 +48,11 @@
                             <Trigger Property="IsDefaulted" Value="true">
                                 <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                             </Trigger>
-                            <Trigger Property="IsMouseOver" Value="true">
+                            <Trigger Property="IsMouseOver" Value="true"><!--Image set for IsMouseOver-->
                                 <Setter Property="Background" TargetName="border" Value="{StaticResource winnerButtonMouseOver}"/>
                                 <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
                             </Trigger>
-                            <Trigger Property="IsPressed" Value="true">
+                            <Trigger Property="IsPressed" Value="true"> <!--Image set for IsPressed-->
                                 <Setter Property="Background" TargetName="border" Value="{StaticResource winnerButtonMouseOver}"/>
                                 <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
                             </Trigger>
@@ -70,7 +71,7 @@
         <Button Style="{DynamicResource WinButtonStyle}" x:Name="winnerButton"
                 Click="winnerButton_Click" FontWeight="ExtraBold">
             <Button.Background>
-                <ImageBrush ImageSource="Images\brush.png" Stretch="None"/>
+                <ImageBrush ImageSource="Images\brush.png" Stretch="None"/> <!--Image set for default button look-->
             </Button.Background>
         </Button>
     </Grid>

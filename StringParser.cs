@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TicaTacToe
 {
     internal static class StringParser
     {
-        public static Point ParseAString(string btnText)
+        public static Point ParseAString(string btnText) //Gets array location from button name which is in string format: ButtonXY and turn that to a Point
         {
             var text = btnText.Substring(6, 2);
             var x = (int)Char.GetNumericValue(text[0]);

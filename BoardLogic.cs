@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace TicaTacToe
 {
     internal class BoardLogic
     {
-        public Player CurrnetPlayer { get; private set; }
-        private int[,] _board { get; set; }
+        public Player CurrnetPlayer { get; private set; } // current player that plays game
+        private int[,] _board { get; set; } // used for calculating win condition only
 
         public Player PlayerOne = new Player("X", new byte[]{204, 0, 204},1);
         public Player PlayerTwo = new Player("O", new byte[]{ 255, 255, 0 },-1);
@@ -20,17 +14,17 @@ namespace TicaTacToe
             CurrnetPlayer = PlayerOne;
             _board = new int[,] {{0,0,0},{0,0,0},{0,0,0 }};
         }
-        public void ChangePlayer()
+        public void ChangePlayer() //switches players
         { 
             if (CurrnetPlayer==PlayerOne)CurrnetPlayer = PlayerTwo;
             else
                 CurrnetPlayer= PlayerOne;    
         }
-        public void BoardSet(Point point)
+        public void BoardSet(Point point) //sets value in array at coordinates which player clicked in GUI P1=1 P2=-1
         {
-            _board[point._row, point._col] = CurrnetPlayer.ArrayValue;
+            _board[point.Row, point.Col] = CurrnetPlayer.ArrayValue;
         }
-        public void ClearBoard()
+        public void ClearBoard() // reset array value and setting P1 at turn GUI clear is done in main window // called after win condition reached (P1 win/P2 win/draw)
         {
             CurrnetPlayer = PlayerOne;
             _board = new int[,] { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } };
@@ -40,7 +34,7 @@ namespace TicaTacToe
             PlayerOne.WinReset();
             PlayerTwo.WinReset();
         }
-        public WindCondtionObject CheckWin()
+        public WindCondtionObject CheckWin() // check rows, columns and then diagonals for 3 or -3 value
         {
             int sum =0;
             for (int i = 0; i < 3; i++)
@@ -71,7 +65,7 @@ namespace TicaTacToe
             return new WindCondtionObject(false);
         }
 
-        private bool IsDraw()
+        private bool IsDraw() // if there is no winner and array does not contain 0 value anymore returns true
         {
             foreach (var item in _board)
             {

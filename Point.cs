@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace TicaTacToe
 {
-    internal class Point
+    internal class Point //used to return coordinates for array from StringParser class
     {
-        public int _row { get; private set; }
-        public int _col { get; private set; }
+        public int Row { get; private set; }
+        public int Col { get; private set; }
 
         public Point(int row, int col)
         {
-            _row = row;
-            _col = col;
+            Row = row;
+            Col = col;
         }
     }
 }

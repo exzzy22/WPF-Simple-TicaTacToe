@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace TicaTacToe
 {
@@ -28,7 +18,7 @@ namespace TicaTacToe
 
         private void PlayerClicks(object sender, RoutedEventArgs e)
         {
-            if (sender as Button != RestartButton && sender as Button != ExitButton)
+            if (sender as Button != RestartButton && sender as Button != ExitButton) //since all buttons trigger this event checks for Restart and Exit button and skip this code for them
             {
                 var btn = sender as Button;
                 var btnName = btn.Name;
@@ -36,6 +26,7 @@ namespace TicaTacToe
                 btn.Foreground = new SolidColorBrush(Color.FromRgb(playerColor[0], playerColor[1], playerColor[2]));
                 btn.Content = BoardLogic.CurrnetPlayer.Symbol;
                 BoardLogic.BoardSet(StringParser.ParseAString(btnName));
+
                 if (BoardLogic.CheckWin().IsDraw)
                 {
                     WinnerTextWindow winnerWindow = new WinnerTextWindow("Draw");
@@ -89,7 +80,7 @@ namespace TicaTacToe
             this.Close();
         }
 
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e) //enables form drag anywhere on windows
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {

@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace TicaTacToe
 {
@@ -20,10 +19,10 @@ namespace TicaTacToe
     public partial class WinnerTextWindow : Window
     {
 
-        public WinnerTextWindow(string winnerOrDraw)
+        public WinnerTextWindow(string winnerOrDraw)//Player - WiningMessage or "Draw" in case of draw
         {
             InitializeComponent();
-            winnerButton.Content = winnerOrDraw;
+            winnerButton.Content = winnerOrDraw; 
         }
 
         private void winnerButton_Click(object sender, RoutedEventArgs e)

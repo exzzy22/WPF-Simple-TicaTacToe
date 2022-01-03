@@ -80,7 +80,8 @@
         <TextBlock Text="wins" Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" Margin="130,70,0,0"/>
         <TextBlock Name="PlayerOneWins" Text="" Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="2" Margin="130,10,0,0"/>
         <TextBlock Name="PlayerTwoWins" Text="" Grid.Row="3" Grid.Column="7" Grid.ColumnSpan="2" Margin="50,10,0,0"/>
-        <!--Restart and Exit button-->
+            <TextBlock Name="Turn" Text="X turn" Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="2" Margin="30,0,0,0"/>
+            <!--Restart and Exit button-->
         <Button x:Name="RestartButton" Content="Restart"  Grid.Row="5" Grid.Column="2" 
                 Grid.ColumnSpan="4" BorderThickness="0" Background="Transparent" Foreground="White" 
                 Margin="150,100,80,20" Click="RestartButton_Click"/>

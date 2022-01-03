@@ -6,6 +6,8 @@ namespace TicaTacToe
         public Player CurrnetPlayer { get; private set; } // current player that plays game
         private int[,] _board { get; set; } // used for calculating win condition only
 
+        public int RoundCounter { get; private set; } // odd P1 turn, even P2 turn
+
         public Player PlayerOne = new Player("X", new byte[]{204, 0, 204},1);
         public Player PlayerTwo = new Player("O", new byte[]{ 255, 255, 0 },-1);
 
@@ -13,6 +15,7 @@ namespace TicaTacToe
         {
             CurrnetPlayer = PlayerOne;
             _board = new int[,] {{0,0,0},{0,0,0},{0,0,0 }};
+            RoundCounter = 1;
         }
         public void ChangePlayer() //switches players
         { 
@@ -26,8 +29,10 @@ namespace TicaTacToe
         }
         public void ClearBoard() // reset array value and setting P1 at turn GUI clear is done in main window // called after win condition reached (P1 win/P2 win/draw)
         {
-            CurrnetPlayer = PlayerOne;
+            ++RoundCounter;
             _board = new int[,] { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } };
+            if (RoundCounter % 2 == 0) CurrnetPlayer = PlayerTwo;
+            else CurrnetPlayer = PlayerOne;
         }
         public void ResetCounter()
         {

@@ -28,37 +28,41 @@ namespace TicaTacToe
                 btn.Content = BoardLogic.CurrnetPlayer.Symbol;
                 BoardLogic.BoardSet(StringParser.ParseAString(btnName));
 
-                if (BoardLogic.CheckWin().IsDraw)
+                if (BoardLogic.CheckWin() != EndGameState.StillPlaying)
                 {
-                    WinnerTextWindow winnerWindow = new WinnerTextWindow("Draw");
-                    winnerWindow.Owner = this;
-                    winnerWindow.ShowDialog();
-                    ResetButtonContent();
-                    EnableButons();
-                    BoardLogic.ClearBoard();
-                    TurnText();
-                }
-
-                else if (BoardLogic.CheckWin().HasWon)
-                {
-                    BoardLogic.CurrnetPlayer.WinIncrement();
-                    WinnerTextWindow winnerWindow = new WinnerTextWindow(BoardLogic.CurrnetPlayer.WiningMessage);
-                    winnerWindow.Owner = this;
-                    winnerWindow.ShowDialog();
-                    ResetButtonContent();
-                    EnableButons();
-                    BoardLogic.ClearBoard();
-                    if (BoardLogic.PlayerOne.WinCounter > 0 || BoardLogic.PlayerTwo.WinCounter > 0)
+                    if (BoardLogic.CheckWin() == EndGameState.Draw)
                     {
-                        PlayerOneWins.Text = BoardLogic.PlayerOne.WinCounter.ToString();
-                        PlayerTwoWins.Text = BoardLogic.PlayerTwo.WinCounter.ToString();
+                        WinnerTextWindow winnerWindow = new WinnerTextWindow("Draw");
+                        winnerWindow.Owner = this;
+                        winnerWindow.ShowDialog();
+                        ResetButtonContent();
+                        EnableButons();
+                        BoardLogic.ClearBoard();
+                        TurnText();
                     }
-                    TurnText();
+
+                    else if (BoardLogic.CheckWin() == EndGameState.Win)
+                    {
+                        BoardLogic.CurrnetPlayer.WinIncrement();
+                        WinnerTextWindow winnerWindow = new WinnerTextWindow(BoardLogic.CurrnetPlayer.WiningMessage);
+                        winnerWindow.Owner = this;
+                        winnerWindow.ShowDialog();
+                        ResetButtonContent();
+                        EnableButons();
+                        BoardLogic.ClearBoard();
+                        if (BoardLogic.PlayerOne.WinCounter > 0 || BoardLogic.PlayerTwo.WinCounter > 0)
+                        {
+                            PlayerOneWins.Text = BoardLogic.PlayerOne.WinCounter.ToString();
+                            PlayerTwoWins.Text = BoardLogic.PlayerTwo.WinCounter.ToString();
+                        }
+                        TurnText();
+                    }
                 }
                 else BoardLogic.ChangePlayer();
                 Turn.Text = $"{BoardLogic.CurrnetPlayer.Symbol} turn";
             }
         }
+        #region Button Reset and Enable methods
         public void ResetButtonContent()
         {
             Button00.Content = "";
@@ -84,6 +88,7 @@ namespace TicaTacToe
             Button21.IsEnabled = true;
             Button22.IsEnabled = true;
         }
+        #endregion
         private void TurnText()
         {
             if (BoardLogic.RoundCounter % 2 == 0) Turn.Text = "O turn";

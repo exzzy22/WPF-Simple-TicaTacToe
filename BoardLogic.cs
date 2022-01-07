@@ -1,6 +1,10 @@
 ﻿
 namespace TicaTacToe
 {
+    public enum EndGameState
+    {
+        Win,Draw,StillPlaying
+    }
     internal class BoardLogic
     {
         public Player CurrnetPlayer { get; private set; } // current player that plays game
@@ -39,7 +43,7 @@ namespace TicaTacToe
             PlayerOne.WinReset();
             PlayerTwo.WinReset();
         }
-        public WindCondtionObject CheckWin() // check rows, columns and then diagonals for 3 or -3 value
+        public EndGameState CheckWin() // check rows, columns and then diagonals for 3 or -3 value
         {
             int sum =0;
             for (int i = 0; i < 3; i++)
@@ -47,7 +51,7 @@ namespace TicaTacToe
                 for (int j = 0; j < 3; j++)
                 {
                     sum +=_board[i, j];
-                    if (sum == 3 || sum == -3) return new WindCondtionObject(true);
+                    if (sum == 3 || sum == -3) return EndGameState.Win;
                 }
                 sum = 0;
             }
@@ -57,17 +61,17 @@ namespace TicaTacToe
                 for (int j = 0; j < 3; j++)
                 {
                     sum += _board[j, i];
-                    if (sum == 3 || sum == -3) return new WindCondtionObject(true);
+                    if (sum == 3 || sum == -3) return EndGameState.Win;
                 }
                 sum = 0;
             }
             if (_board[1, 1] != 0)
             {
-                if (_board[0, 0] + _board[1, 1] + _board[2, 2] == 3 || _board[0, 0] + _board[1, 1] + _board[2, 2] == -3) return new WindCondtionObject(true);
-                if (_board[0, 2] + _board[1, 1] + _board[2, 0] == 3 || _board[0, 2] + _board[1, 1] + _board[2, 0] == -3) return new WindCondtionObject(true);
+                if (_board[0, 0] + _board[1, 1] + _board[2, 2] == 3 || _board[0, 0] + _board[1, 1] + _board[2, 2] == -3) return EndGameState.Win;
+                if (_board[0, 2] + _board[1, 1] + _board[2, 0] == 3 || _board[0, 2] + _board[1, 1] + _board[2, 0] == -3) return EndGameState.Win;
             }
-            if(IsDraw())return new WindCondtionObject(true,true);
-            return new WindCondtionObject(false);
+            if(IsDraw())return EndGameState.Draw;
+            return EndGameState.StillPlaying;
         }
 
         private bool IsDraw() // if there is no winner and array does not contain 0 value anymore returns true
